@@ -27,7 +27,6 @@ app.set('views', path.join(__dirname, 'src/views'));
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 app.get('/', (req, res) => {
     const title = 'Home';
     res.render('home', { title });
