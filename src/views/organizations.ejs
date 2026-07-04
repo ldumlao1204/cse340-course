@@ -3,14 +3,25 @@
         <h1><%= title %></h1>
 
         <p>Here are a few of our partner organizations:</p>
-        <ul>
-            <li><img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo"><strong>BrightFuture
-                    Builders</strong>: info@brightfuture.org</li>
-            <li><img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo"><strong>GreenHarvest Growers</strong>:
-                contact@greenharvest.org</li>
-            <li><img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo"><strong>UnityServe Volunteers</strong>:
-                hello@unityserve.org</li>
-        </ul>
+        <section class="card-grid" aria-label="Partner organizations">
+            <article class="card">
+                <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo" class="card-image">
+                <h2>BrightFuture Builders</h2>
+                <p>info@brightfuture.org</p>
+            </article>
+
+            <article class="card">
+                <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo" class="card-image">
+                <h2>GreenHarvest Growers</h2>
+                <p>contact@greenharvest.org</p>
+            </article>
+
+            <article class="card">
+                <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo" class="card-image">
+                <h2>UnityServe Volunteers</h2>
+                <p>hello@unityserve.org</p>
+            </article>
+        </section>
     </main>
     
 <%- include('partials/footer') %>

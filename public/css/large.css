@@ -1,0 +1,17 @@
+@media (min-width: 1024px) {
+    main {
+        padding: 32px 24px 56px;
+    }
+
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    .hero {
+        padding: 48px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

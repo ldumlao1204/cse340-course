@@ -5,15 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <meta name="description"
+        content="Promoting service across the world by connecting volunteers with service opportunities in their community.">
+    <meta name="author" content="Leilany Dumlao">
+
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
     <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/medium.css" media="(min-width: 768px)">
+    <link rel="stylesheet" href="/css/large.css" media="(min-width: 1024px)">    
+
+    <!-- Scripts-->
+    <script src="/scripts/main.js" defer></script>
+    
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/organizations">Organizations</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/categories">Categories</a></li>
-        </ul>
+    <!-- Header -->
+    <nav class="site-nav" aria-label="Primary navigation">
+            <a class="brand" href="/">
+                <img src="/images/cse340-service-network.png" alt="CSE 340 Service Network Logo" class="nav-logo" width="50"
+                    height="50">
+            </a>
+        
+            <button class="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        
+            <div id="nav-links" class="nav-links">
+                <a href="/">Home</a>
+                <a href="/organizations">Organizations</a>
+                <a href="/projects">Projects</a>
+                <a href="/categories">Categories</a>
+            </div>
     </nav>
+
+    
