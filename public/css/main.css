@@ -6,7 +6,7 @@
     --accent: #16505a;
     --accent-boost: #05668d;
     --border: #dce7eb;
-    --shadow: 0 8px 24px rgba(15, 23, 32, 0.08);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 * {
