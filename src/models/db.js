@@ -11,22 +11,24 @@ import { Pool } from 'pg';
  * The connection string format is:
  * postgresql://username:password@host:port/database
  */
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 const pool = new Pool({
     connectionString: process.env.DB_URL,
-    ssl: true
+    ssl: isDevelopment
+        ? { rejectUnauthorized: false }
+        : { rejectUnauthorized: true }
 });
 
 /**
  * Common SSL Issue:
  *
- * You may encounter SSL connection errors depending on your operating system, Node.js
- * version, or PostgreSQL server settings. If you have confirmed your credentials are
- * correct but still see SSL errors, try updating the 'ssl' property in the Pool
- * configuration above to:
+ * If your PostgreSQL server uses a self-signed certificate in development,
+ * Node.js may reject it by default. The development fallback above disables
+ * certificate validation only when NODE_ENV is not set to 'production'.
  *
- * ssl: {
- *     rejectUnauthorized: false
- * }
+ * For production, keep certificate verification enabled and install the
+ * correct root CA instead of disabling validation.
  */
 
 /**
