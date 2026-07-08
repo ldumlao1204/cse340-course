@@ -170,6 +170,7 @@ a {
 .card-grid {
     display: grid;
     gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .card {
@@ -178,6 +179,9 @@ a {
     border-radius: 12px;
     padding: 16px;
     box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card ul {

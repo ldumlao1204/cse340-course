@@ -3,24 +3,18 @@
         <h1><%= title %></h1>
 
         <p>Here are a few of our partner organizations:</p>
+
         <section class="card-grid" aria-label="Partner organizations">
-            <article class="card">
-                <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo" class="card-image">
-                <h2>BrightFuture Builders</h2>
-                <p>info@brightfuture.org</p>
-            </article>
-
-            <article class="card">
-                <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo" class="card-image">
-                <h2>GreenHarvest Growers</h2>
-                <p>contact@greenharvest.org</p>
-            </article>
-
-            <article class="card">
-                <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo" class="card-image">
-                <h2>UnityServe Volunteers</h2>
-                <p>hello@unityserve.org</p>
-            </article>
+            <% organizations.forEach(org => { %>
+                <article class="card organization-card">
+                    <img src="/images/<%= org.logo_filename %>" alt="<%= org.name %> logo" class="card-image">
+                    <div class="card-title">
+                        <h2><%= org.name %></h2>
+                    </div>
+                    <p><%= org.description %></p>
+                    <p><strong>Contact:</strong> <a href="mailto:<%= org.contact_email %>"><%= org.contact_email %></a></p>
+                </article>
+            <% }) %>
         </section>
     </main>
     
