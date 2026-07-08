@@ -12,23 +12,26 @@ import { Pool } from 'pg';
  * postgresql://username:password@host:port/database
  */
 const isDevelopment = process.env.NODE_ENV !== 'production';
+const rejectUnauthorized = process.env.DB_SSL_REJECT_UNAUTHORIZED !== 'false';
 
 const pool = new Pool({
     connectionString: process.env.DB_URL,
-    ssl: isDevelopment
-        ? { rejectUnauthorized: false }
-        : { rejectUnauthorized: true }
+    ssl: process.env.DB_SSL === 'false'
+        ? false
+        : { rejectUnauthorized }
 });
 
 /**
  * Common SSL Issue:
  *
- * If your PostgreSQL server uses a self-signed certificate in development,
- * Node.js may reject it by default. The development fallback above disables
- * certificate validation only when NODE_ENV is not set to 'production'.
+ * If your PostgreSQL server uses a self-signed certificate, Node.js may reject
+ * the connection unless certificate validation is disabled. On Render, you can
+ * allow this by setting:
  *
- * For production, keep certificate verification enabled and install the
- * correct root CA instead of disabling validation.
+ *   DB_SSL_REJECT_UNAUTHORIZED=false
+ *
+ * The code still defaults to rejecting unauthorized certs unless that env var
+ * is explicitly disabled.
  */
 
 /**
