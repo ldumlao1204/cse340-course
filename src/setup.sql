@@ -36,3 +36,14 @@ CREATE TABLE service_project (
         REFERENCES organization (organization_id)
         ON DELETE CASCADE
 );
+
+-- =====================================
+-- Insert sample data: Service Projects
+-- =====================================
+INSERT INTO service_project (organization_id, title, description, location, project_date)
+VALUES
+(1, 'Community Garden Cleanup', 'Weekend cleanup of the downtown lot', 'Downtown Park', '2026-08-15'),
+(2, 'Community Garden Expansion', 'Expanding the neighborhood garden to grow more fresh produce for local families.', 'Elm Street Lot', '2026-08-15'),
+(3, 'Back-to-School Supply Drive', 'Collecting and distributing school supplies to underserved students.', 'Central Community Center', '2026-08-22');
+
+SELECT * FROM service_project;
