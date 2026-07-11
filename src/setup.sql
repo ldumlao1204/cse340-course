@@ -31,6 +31,7 @@ CREATE TABLE service_project (
     description     TEXT,
     location        VARCHAR(150),
     project_date    DATE,
+
     CONSTRAINT fk_organization
         FOREIGN KEY (organization_id)
         REFERENCES organization (organization_id)
@@ -60,5 +61,73 @@ VALUES
 (3, 'Senior Center Visits', 'Coordinating volunteer visits and activities at the senior center.', 'Willowbrook Senior Center', '2026-09-22'),
 (3, 'Youth Mentorship Kickoff', 'Launching a new mentorship program pairing volunteers with local youth.', 'Central Community Center', '2026-10-06');
 
-
 SELECT * FROM service_project;
+
+-- ========================================
+-- Category Table
+-- ========================================
+CREATE TABLE category (
+    category_id  SERIAL PRIMARY KEY,
+    name         VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Insert sample data: Categories
+INSERT INTO category (name)
+VALUES
+('Environment'),
+('Education'),
+('Community Development'),
+('Health & Wellness'),
+('Food Security');
+
+-- ========================================
+-- Service Project <-> Category Table
+-- ========================================
+CREATE TABLE service_project_category (
+    project_id   INTEGER NOT NULL,
+    category_id  INTEGER NOT NULL,
+    PRIMARY KEY (project_id, category_id),
+    CONSTRAINT fk_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project (project_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_category
+        FOREIGN KEY (category_id)
+        REFERENCES category (category_id)
+        ON DELETE CASCADE
+);
+
+INSERT INTO service_project_category (project_id, category_id)
+VALUES
+-- Org 1: BrightFuture Builders
+(1, 3),              -- Community Garden Cleanup -> Community Development
+(1, 1),              -- Community Garden Cleanup -> Environment
+(2, 3),              -- Senior Home Repairs -> Community Development
+(2, 4),              -- Senior Home Repairs -> Health & Wellness
+(3, 3),              -- Wheelchair Ramp Build -> Community Development
+(4, 3),              -- Storm Shelter Restoration -> Community Development
+(5, 3),              -- Playground Rebuild -> Community Development
+
+-- Org 2: GreenHarvest Growers
+(6, 1),              -- Community Garden Expansion -> Environment
+(6, 5),              -- Community Garden Expansion -> Food Security
+(7, 5),              -- Seed Distribution Day -> Food Security
+(8, 1),              -- Compost Workshop -> Environment
+(8, 2),              -- Compost Workshop -> Education
+(9, 1),              -- Urban Orchard Planting -> Environment
+(10, 5),             -- Farm-to-Table Fundraiser -> Food Security
+
+-- Org 3: UnityServe Volunteers
+(11, 2),             -- Back-to-School Supply Drive -> Education
+(12, 3),             -- Winter Coat Drive -> Community Development
+(13, 5),             -- Food Pantry Restock -> Food Security
+(14, 4),             -- Senior Center Visits -> Health & Wellness
+(15, 2);             -- Youth Mentorship Kickoff -> Education
+
+SELECT * FROM service_project_category ORDER BY project_id, category_id;
+SELECT * FROM category;
+SELECT sp.project_id, sp.title, c.name AS category
+FROM service_project sp
+JOIN service_project_category spc ON sp.project_id = spc.project_id
+JOIN category c ON spc.category_id = c.category_id
+ORDER BY sp.project_id;
