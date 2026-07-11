@@ -14,11 +14,11 @@ CREATE TABLE organization (
 -- =====================================
 INSERT INTO organization (name, description, contact_email, logo_filename)
 VALUES
-('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.')
-('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.')	
-('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.')
+('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuture.org', 'brightfuture.png'),
+('GreenHarvest Growers', 'An urban farming collective promoting food sustainability and education in local neighborhoods.', 'contact@greenharvest.org', 'greenharvest.png'),
+('UnityServe Volunteers', 'A volunteer coordination group supporting local charities and service initiatives.', 'hello@unityserve.org', 'unityserve.png');
 
-SELECT * FROM organization
+SELECT * FROM organization;
 
 -- ========================================
 -- Service Project Table
@@ -76,9 +76,10 @@ INSERT INTO category (name)
 VALUES
 ('Environment'),
 ('Education'),
-('Community Development'),
 ('Health & Wellness'),
 ('Food Security');
+
+SELECT * FROM category;
 
 -- ========================================
 -- Service Project <-> Category Table
@@ -100,34 +101,32 @@ CREATE TABLE service_project_category (
 INSERT INTO service_project_category (project_id, category_id)
 VALUES
 -- Org 1: BrightFuture Builders
-(1, 3),              -- Community Garden Cleanup -> Community Development
-(1, 1),              -- Community Garden Cleanup -> Environment
-(2, 3),              -- Senior Home Repairs -> Community Development
-(2, 4),              -- Senior Home Repairs -> Health & Wellness
-(3, 3),              -- Wheelchair Ramp Build -> Community Development
-(4, 3),              -- Storm Shelter Restoration -> Community Development
-(5, 3),              -- Playground Rebuild -> Community Development
+(1, 1),   -- Community Garden Cleanup -> Environment
+(2, 3),   -- Senior Home Repairs -> Health & Wellness
+(3, 3),   -- Wheelchair Ramp Build -> Health & Wellness
+(4, 1),   -- Storm Shelter Restoration -> Environment
+(5, 3),   -- Playground Rebuild -> Health & Wellness
 
 -- Org 2: GreenHarvest Growers
-(6, 1),              -- Community Garden Expansion -> Environment
-(6, 5),              -- Community Garden Expansion -> Food Security
-(7, 5),              -- Seed Distribution Day -> Food Security
-(8, 1),              -- Compost Workshop -> Environment
-(8, 2),              -- Compost Workshop -> Education
-(9, 1),              -- Urban Orchard Planting -> Environment
-(10, 5),             -- Farm-to-Table Fundraiser -> Food Security
+(6, 1),   -- Community Garden Expansion -> Environment
+(6, 4),   -- Community Garden Expansion -> Food Security
+(7, 4),   -- Seed Distribution Day -> Food Security
+(8, 1),   -- Compost Workshop -> Environment
+(8, 2),   -- Compost Workshop -> Education
+(9, 1),   -- Urban Orchard Planting -> Environment
+(10, 4),  -- Farm-to-Table Fundraiser -> Food Security
 
 -- Org 3: UnityServe Volunteers
-(11, 2),             -- Back-to-School Supply Drive -> Education
-(12, 3),             -- Winter Coat Drive -> Community Development
-(13, 5),             -- Food Pantry Restock -> Food Security
-(14, 4),             -- Senior Center Visits -> Health & Wellness
-(15, 2);             -- Youth Mentorship Kickoff -> Education
+(11, 2),  -- Back-to-School Supply Drive -> Education
+(12, 3),  -- Winter Coat Drive -> Health & Wellness
+(13, 4),  -- Food Pantry Restock -> Food Security
+(14, 3),  -- Senior Center Visits -> Health & Wellness
+(15, 2);  -- Youth Mentorship Kickoff -> Education
 
 SELECT * FROM service_project_category ORDER BY project_id, category_id;
-SELECT * FROM category;
-SELECT sp.project_id, sp.title, c.name AS category
+SELECT sp.project_id, sp.title, spc.category_id, c.name AS category_name
 FROM service_project sp
 JOIN service_project_category spc ON sp.project_id = spc.project_id
 JOIN category c ON spc.category_id = c.category_id
-ORDER BY sp.project_id;
+ORDER BY sp.project_id, spc.category_id;
+
