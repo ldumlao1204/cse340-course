@@ -9,7 +9,11 @@
                 <article class="card organization-card">
                     <img src="/images/<%= org.logo_filename %>" alt="<%= org.name %> logo" class="card-image">
                     <div class="card-title">
-                        <h2><%= org.name %></h2>
+                        <h2>
+                            <a href="/organization/<%= org.organization_id %>">
+                                <%= org.name %>
+                            </a>
+                        </h2>
                     </div>
                     <p><%= org.description %></p>
                     <p><strong>Contact:</strong> <a href="mailto:<%= org.contact_email %>"><%= org.contact_email %></a></p>
