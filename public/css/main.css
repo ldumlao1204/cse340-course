@@ -169,6 +169,7 @@ a {
 
 .card-grid {
     display: grid;
+    flex-direction: row;
     gap: 16px;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }

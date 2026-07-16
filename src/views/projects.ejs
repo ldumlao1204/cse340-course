@@ -4,24 +4,27 @@
 
         <h2>Upcoming Service Projects</h2>
         <section class="card-grid" aria-label="Service projects">
-            <% projects.forEach(project=> { %>
+            <% projects.forEach(project => { %>
                 <article class="card">
                     <p>
                         <strong>
-                            <%= new Date(project.project_date).toLocaleDateString('en-US', { month: 'long' , day: 'numeric' ,
-                                year: 'numeric' }) %>
+                            <%= new Date(project.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %>
                         </strong>
-                        : <%= project.title %> (<%= project.organization_name %>)
+                        :
+                        <a href="/project/<%= project.project_id %>">
+                            <%= project.title %>
+                        </a>
+                        (
+                        <a href="/organization/<%= project.organization_id %>">
+                            <%= project.organization_name %>
+                        </a>
+                        )
                     </p>
-                    <p><strong>Location:</strong>
-                        <%= project.location %>
-                    </p>
-                    <p>
-                        <%= project.description %>
-                    </p>
+                    <p><strong>Location:</strong> <%= project.location %></p>
+                    <p><%= project.description %></p>
                 </article>
-                <% }) %>
+            <% }) %>
         </section>
     </main>
-    
+
 <%- include('partials/footer') %>
