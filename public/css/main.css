@@ -175,6 +175,7 @@ a {
 }
 
 .card {
+    position: relative;
     background: var(--primary);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -206,6 +207,17 @@ a {
 .card-title {
     margin-bottom: 12px;
     border-radius: 8px;
+}
+
+card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.card>* {
+    position: relative;
+    z-index: 2;
 }
 
 footer {
