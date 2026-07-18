@@ -36,6 +36,14 @@ app.use((req, res, next) => {
     next(); // Pass control to the next middleware or route
 });
 
+// Middleware to ignore favicon requests
+app.use((req, res, next) => {
+    if (req.originalUrl.endsWith('/favicon.ico')) {
+        return res.status(204).send();
+    }
+    next();
+});
+
 // Middleware to make NODE_ENV available to all templates
 app.use((req, res, next) => {
     res.locals.NODE_ENV = NODE_ENV;
@@ -79,10 +87,9 @@ app.listen(PORT, async () => {
         await testConnection();
         console.log(`Server is running at http://127.0.0.1:${PORT}`);
         console.log(`Environment: ${NODE_ENV}`);
-    }   catch (error) {
+    } catch (error) {
         console.error('Failed to connect to the database:', error);
         process.exit(1); //Exit with failure code
     }
 
 });
-
