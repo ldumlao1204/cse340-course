@@ -1,17 +1,15 @@
 <%- include('partials/header') %>
-    <main>
-        <h1><%= title %></h1>
 
-        <h2>Service Project Categories</h2>
-        <section class="card-grid" aria-label="Service project categories">
+    <main>
+        <h1 class="text-center"><%= title %></h1>
+
+        <ul class="item-list">
             <% categories.forEach(category => { %>
-                <article class="card">
-                    <div class="card-title">
-                        <h3><%= category.name %></h3>
-                    </div>
-                </article>
+                <li>
+                    <a href="/category/<%= category.category_id %>"><%= category.name %></a>
+                </li>
             <% }) %>
-        </section>
+        </ul>
     </main>
 
 <%- include('partials/footer') %>

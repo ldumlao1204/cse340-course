@@ -3,13 +3,12 @@
         <h1>
             <%= project.title %>
         </h1>
-
+ 
         <p><strong>Description:</strong>
             <%= project.description %>
         </p>
         <p><strong>Date:</strong>
-            <%= new Date(project.date).toLocaleDateString('en-US', { month: 'long' , day: 'numeric' , year: 'numeric' })
-                %>
+            <%= new Date(project.date).toLocaleDateString('en-US', { month: 'long' , day: 'numeric' , year: 'numeric' }) %>
         </p>
         <p><strong>Location:</strong>
             <%= project.location %>
@@ -20,6 +19,15 @@
                 <%= project.organization_name %>
             </a>
         </p>
-    </main>
 
+        <% if (categories && categories.length > 0) { %>
+            <div class="category-tags">
+                <strong>Categories:</strong>
+                <% categories.forEach(category => { %>
+                    <a href="/category/<%= category.category_id %>" class="tag"><%= category.name %></a>
+                <% }) %>
+            </div>
+        <% } %>
+    </main>
+ 
     <%- include('partials/footer') %>

@@ -64,6 +64,10 @@ p {
     color: var(--muted);
 }
 
+.text-center {
+    text-align: center;
+}
+
 a {
     color: var(--text);
     text-decoration: none;
@@ -209,15 +213,28 @@ a {
     border-radius: 8px;
 }
 
-card-overlay {
+.card-overlay {
     position: absolute;
     inset: 0;
     z-index: 1;
+    border-radius: 12px;
+    /* Match the card's border-radius */
 }
 
-.card>* {
-    position: relative;
-    z-index: 2;
+.tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.25em 0.6em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+    margin-right: 5px;
+}
+
+.tag:visited {
+    background-color: #d8bfd8;
+    /* A light purple background for visited tags */
+    color: #333;
 }
 
 footer {
@@ -226,4 +243,42 @@ footer {
     color: var(--muted);
     background: var(--primary);
 
+}
+
+/* ========================================
+   Item List Styles (for Categories, Orgs, etc.)
+   ======================================== */
+
+.item-list {
+    list-style: none;
+    /* Remove default bullet points */
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.item-list li {
+    margin-bottom: 0.75rem;
+    /* Add some space between category items */
+}
+
+.item-list a {
+    display: block;
+    /* Make the entire area clickable, not just the text */
+    padding: 1rem;
+    background-color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-weight: 700;
+    color: var(--text);
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for hover effects */
+}
+
+.item-list a:hover {
+    color: var(--accent-boost);
+    text-decoration: underline;
+    /* Add underline on hover */
+    transform: translateY(-2px);
+    /* Lift the item slightly */
+    box-shadow: var(--shadow);
 }

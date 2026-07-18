@@ -1,25 +1,23 @@
 <%- include('partials/header') %>
+
     <main>
         <h1><%= title %></h1>
 
-        <p>Here are a few of our partner organizations:</p>
-
         <section class="card-grid" aria-label="Partner organizations">
-            <% organizations.forEach(org => { %>
-                <article class="card organization-card">
-                    <img src="/images/<%= org.logo_filename %>" alt="<%= org.name %> logo" class="card-image">
-                    <div class="card-title">
-                        <h2>
-                            <a href="/organization/<%= org.organization_id %>">
-                                <%= org.name %>
-                            </a>
-                        </h2>
-                    </div>
-                    <p><%= org.description %></p>
-                    <p><strong>Contact:</strong> <a href="mailto:<%= org.contact_email %>"><%= org.contact_email %></a></p>
+            <% organizations.forEach(organization => { %>
+                <article class="card">
+                    <a class="card-overlay" href="/organization/<%= organization.organization_id %>"
+                        aria-label="View details for <%= organization.name %>"></a>
+
+                    <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"
+                        class="card-image">
+                    <h2 class="card-title"><%= organization.name %></h2>
+                    <p>
+                        <%= organization.description %>
+                    </p>
                 </article>
             <% }) %>
         </section>
     </main>
-    
+
 <%- include('partials/footer') %>
