@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { showHomePage } from './controllers/index.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation as projectValidation } from './controllers/projects.js';
 import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import {
@@ -11,9 +11,8 @@ import {
     processNewOrganizationForm,
     organizationValidation,
     showEditOrganizationForm,
-    processEditOrganizationForm
-
-} from './controllers/organizations.js';
+    processEditOrganizationForm,
+} from './controllers/organizations.js'
 
 const router = express.Router();
 

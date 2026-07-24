@@ -71,8 +71,8 @@ const getProjectsByOrganizationId = async (organizationId) => {
 
 const createProject = async (title, description, location, date, organizationId) => {
     const query = `
-      INSERT INTO project (title, description, location, date, organization_id)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO service_project (title, description, location, project_date, organization_id)
+      VALUES ($1, $2, $3, $4, $5) /* Note: $4 maps to the 'date' parameter */
       RETURNING project_id;
     `;
 
