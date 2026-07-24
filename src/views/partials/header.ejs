@@ -50,4 +50,16 @@
             </div>
     </nav>
 
+    <div class="flash-container">
+        <% const messages = flash(); %>
+        <% if (messages) { %>
+            <% Object.keys(messages).forEach(type => { %>
+                <% messages[type].forEach(message => { %>
+                    <% if (message) { %>
+                        <div class="alert <%= type %>"><%= message %></div>
+                    <% } %>
+                <% }) %>
+            <% }) %>
+        <% } %>
+    </div>
     
