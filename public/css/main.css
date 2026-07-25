@@ -369,3 +369,9 @@ form {
 .checkbox-item input[type="checkbox"] {
     margin-right: 0.75rem;
 }
+
+.action-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}

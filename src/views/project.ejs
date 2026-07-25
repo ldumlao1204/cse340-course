@@ -29,7 +29,10 @@
             </div>
         <% } %>
 
-        <p><a href="/project/<%= project.project_id %>/assign-categories" class="btn">Edit Categories</a></p>
+        <div class="action-buttons">
+            <a href="/project/<%= project.project_id %>/edit" class="btn">Edit Project</a>
+            <a href="/project/<%= project.project_id %>/assign-categories" class="btn">Edit Categories</a>
+        </div>
     </main>
  
     <%- include('partials/footer') %>
