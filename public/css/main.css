@@ -353,3 +353,19 @@ form {
     border-color: var(--accent-boost);
     box-shadow: 0 0 0 2px rgba(5, 102, 141, 0.2);
 }
+
+.checkbox-group {
+    background-color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.checkbox-item input[type="checkbox"] {
+    margin-right: 0.75rem;
+}
