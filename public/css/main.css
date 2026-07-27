@@ -187,7 +187,7 @@ a {
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: 0;
 }
 
@@ -254,6 +254,7 @@ footer {
     /* Remove default bullet points */
     padding: 0;
     margin-top: 1.5rem;
+    
 }
 
 .item-list li {
@@ -295,24 +296,29 @@ footer {
     color: #155724;
     background-color: #d4edda;
     border-color: #c3e6cb;
+    font-weight: bold;
+    
 }
 
 .alert.error {
     color: #721c24;
     background-color: #f8d7da;
     border-color: #f5c6cb;
+    font-weight: bold;
 }
 
 .alert.warning {
     color: #856404;
     background-color: #fff3cd;
     border-color: #ffeeba;
+    font-weight: bold;
 }
 
 .alert.info {
     color: #0c5460;
     background-color: #d1ecf1;
     border-color: #bee5eb;
+    font-weight: bold;
 }
 
 /* =================================
@@ -330,12 +336,14 @@ form {
 .form-group label {
     display: block;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     color: var(--text);
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="date"],
+.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 0.75rem;
@@ -348,6 +356,8 @@ form {
 
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-boost);
@@ -359,6 +369,8 @@ form {
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 1rem;
+    box-shadow: 0 0 0 2px rgba(5, 102, 141, 0.2);
+
 }
 
 .checkbox-item {
@@ -366,6 +378,7 @@ form {
     align-items: center;
     margin-bottom: 0.75rem;
 }
+
 .checkbox-item input[type="checkbox"] {
     margin-right: 0.75rem;
 }
