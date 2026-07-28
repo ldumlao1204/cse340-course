@@ -61,7 +61,12 @@ router.post('/project/:id/edit', projectValidation, processEditProjectForm);
 
 // Routes for creating a new category
 router.get('/new-category', showNewCategoryForm);
-router.post('/new-category', processNewCategoryForm);
+router.post('/new-category', categoryValidation, processNewCategoryForm);
 
+// Route to display the edit category form
+router.get('/edit-category/:id', showEditCategoryForm);
+
+// Route to handle the edit category form submission
+router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
 
 export default router;
