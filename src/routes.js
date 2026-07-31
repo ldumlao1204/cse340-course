@@ -13,6 +13,7 @@ import {
     showEditOrganizationForm,
     processEditOrganizationForm,
 } from './controllers/organizations.js'
+import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 
 const router = express.Router();
 
@@ -68,5 +69,9 @@ router.get('/edit-category/:id', showEditCategoryForm);
 
 // Route to handle the edit category form submission
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
+
+// Routes for user registration
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
 
 export default router;
