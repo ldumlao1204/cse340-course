@@ -18,7 +18,9 @@ import {
     processUserRegistrationForm,
     showLoginForm,
     processLoginForm,
-    processLogout
+    processLogout, 
+    requireLogin,
+    showDashboard
 } from './controllers/users.js';
 
 const router = express.Router();
@@ -86,5 +88,8 @@ router.post('/login', processLoginForm);
 
 // Route for user logout
 router.get('/logout', processLogout);
+
+// Route for dashboard page
+router.get('/dashboard', requireLogin, showDashboard);
 
 export default router;
