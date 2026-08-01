@@ -1,7 +1,6 @@
 import db from './db.js'
 import bcrypt from 'bcrypt';
 
-
 // Create the User model with a function to create a new user in the database
 const createUser = async (name, email, passwordHash) => {
     const default_role = 'user';
@@ -65,4 +64,16 @@ const authenticateUser = async (email, password) => {
     return user;
 };
 
-export { createUser, authenticateUser };
+const getAllUsers = async () => {
+    const query = `
+        SELECT u.user_id, u.name, u.email, r.role_name
+        FROM users u
+        JOIN roles r ON u.role_id = r.role_id
+        ORDER BY u.name
+    `;
+
+    const result = await db.query(query);
+    return result.rows;
+};
+
+export { createUser, authenticateUser, getAllUsers, };

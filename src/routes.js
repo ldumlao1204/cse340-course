@@ -21,7 +21,8 @@ import {
     processLogout, 
     requireLogin,
     showDashboard, 
-    requireRole
+    requireRole,
+    showUsersPage
 } from './controllers/users.js';
 
 const router = express.Router();
@@ -92,5 +93,8 @@ router.get('/logout', processLogout);
 
 // Route for dashboard page
 router.get('/dashboard', requireLogin, showDashboard);
+
+// Route for admin users list page
+router.get('/users', requireRole('admin'), showUsersPage);
 
 export default router;
