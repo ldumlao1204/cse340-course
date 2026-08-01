@@ -1,4 +1,5 @@
 import db from './db.js'
+import bcrypt from 'bcrypt';
 
 
 // Create the User model with a function to create a new user in the database
@@ -24,4 +25,43 @@ const createUser = async (name, email, passwordHash) => {
     return result.rows[0].user_id;
 };
 
-export { createUser };
+// Create model function for User Authentication: findUserByEmail
+const findUserByEmail = async (email) => {
+    const query = `
+        SELECT user_id, name, email, password_hash, role_id 
+        FROM users 
+        WHERE email = $1
+    `;
+    const queryParams = [email];
+
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        return null; // User not found
+    }
+
+    return result.rows[0];
+};
+
+// Create model function for User Authentication: verifyPassword
+const verifyPassword = async (password, passwordHash) => {
+    return bcrypt.compare(password, passwordHash);
+};
+
+// Create model function for User Authentication: authenticate user
+const authenticateUser = async (email, password) => {
+    const user = await findUserByEmail(email);
+    if (!user) {
+        return null; // User not found
+    }
+
+    const isPasswordValid = await verifyPassword(password, user.password_hash);
+    if (!isPasswordValid) {
+        return null;
+    }
+
+    delete user.password_hash;
+    return user;
+};
+
+export { createUser, authenticateUser };
