@@ -34,7 +34,9 @@
                 <% }) %>
        </section>
     <div class="action-buttons">
+        <% if (user && user.role_name==='admin' ) { %>
         <a href="/new-project" class="btn">Add a New Service Project</a>
+        <% } %>
     </div>
     </main>
 

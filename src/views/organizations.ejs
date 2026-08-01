@@ -19,8 +19,12 @@
             <% }) %>
         </section>
         <div class="action-buttons">
-            <a href="/new-organization" class="btn">Add a new organization</a>
+            <% if (user && user.role_name==='admin' ) { %>
+                <a href="/new-organization" class="btn">Add New Organization</a>
+            <% } %>      
         </div>
+        
+
     </main>
 
 <%- include('partials/footer') %>

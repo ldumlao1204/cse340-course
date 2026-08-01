@@ -30,8 +30,10 @@
         <% } %>
 
         <div class="action-buttons">
+            <% if (user && user.role_name==='admin' ) { %>
             <a href="/project/<%= project.project_id %>/edit" class="btn">Edit Project</a>
             <a href="/project/<%= project.project_id %>/assign-categories" class="btn">Edit Categories</a>
+            <% } %>
         </div>
     </main>
  

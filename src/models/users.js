@@ -28,8 +28,9 @@ const createUser = async (name, email, passwordHash) => {
 // Create model function for User Authentication: findUserByEmail
 const findUserByEmail = async (email) => {
     const query = `
-        SELECT user_id, name, email, password_hash, role_id 
-        FROM users 
+        SELECT u.user_id, u.name, u.email, u.password_hash, r.role_name 
+        FROM users u
+        JOIN roles r ON u.role_id = r.role_id
         WHERE email = $1
     `;
     const queryParams = [email];
