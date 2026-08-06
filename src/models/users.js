@@ -76,4 +76,4 @@ const getAllUsers = async () => {
     return result.rows;
 };
 
-export { createUser, authenticateUser, getAllUsers, };
+export { createUser, authenticateUser, getAllUsers };

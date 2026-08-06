@@ -174,3 +174,20 @@ FROM users u
 JOIN roles r ON u.role_id = r.role_id;
 
 SELECT * FROM users;
+
+-- =========================================
+-- CREATE TABLE - SERVICE PROJECT VOLUNTEER
+-- =========================================
+CREATE TABLE service_project_volunteer (
+    project_id  INTEGER NOT NULL,
+    user_id     INTEGER NOT NULL,
+    PRIMARY KEY (project_id, user_id),
+    CONSTRAINT fk_volunteer_project
+        FOREIGN KEY (project_id)
+        REFERENCES service_project (project_id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_volunteer_user
+        FOREIGN KEY (user_id)
+        REFERENCES users (user_id)
+        ON DELETE CASCADE
+);

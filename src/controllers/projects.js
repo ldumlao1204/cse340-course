@@ -4,6 +4,8 @@ import { getCategoriesByProjectId } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js';
 import { createProject } from '../models/projects.js'; // This is already here from the previous step
 import { body, validationResult } from 'express-validator';
+import { addVolunteer, removeVolunteer, isVolunteering } from '../models/volunteers.js';
+
 
 const projectValidation = [
     body('title')
@@ -53,8 +55,13 @@ const showProjectDetailsPage = async (req, res, next) => {
         // 4. (This is the new part!) Fetch all categories associated with this project.
         const categories = await getCategoriesByProjectId(projectId);
 
+        let userIsVolunteering = false;
+        if (req.session.user) {
+            userIsVolunteering = await isVolunteering(req.session.user.user_id, projectId);
+        }
+
         // 5. Render the 'project.ejs' view, passing both the project details and the list of categories.
-        res.render('project', { title: project.title, project, categories });
+        res.render('project', { title: project.title, project, categories, userIsVolunteering });
     } catch (error) {
         next(error);
     }
@@ -139,6 +146,24 @@ const processEditProjectForm = async (req, res, next) => {
     res.redirect(`/project/${projectId}`);
 };
 
+const processVolunteerForm = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = req.session.user.user_id;
+
+    await addVolunteer(userId, projectId);
+    req.flash('success', 'You are now volunteering for this project!');
+    res.redirect(`/project/${projectId}`);
+};
+
+const processUnvolunteerForm = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = req.session.user.user_id;
+
+    await removeVolunteer(userId, projectId);
+    req.flash('success', 'You have removed yourself as a volunteer.');
+    res.redirect(`/project/${projectId}`);
+};
+
 
 // Export any controller functions
-export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };
+export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, processVolunteerForm, processUnvolunteerForm };

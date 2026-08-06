@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { showHomePage } from './controllers/index.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation as projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation as projectValidation, showEditProjectForm, processEditProjectForm, processVolunteerForm, processUnvolunteerForm } from './controllers/projects.js';
 import { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import {
@@ -96,5 +96,10 @@ router.get('/dashboard', requireLogin, showDashboard);
 
 // Route for admin users list page
 router.get('/users', requireRole('admin'), showUsersPage);
+
+// Routes to handle volunteering for a project
+router.post('/project/:id/volunteer', requireLogin, processVolunteerForm);
+router.post('/project/:id/unvolunteer', requireLogin, processUnvolunteerForm);
+
 
 export default router;
