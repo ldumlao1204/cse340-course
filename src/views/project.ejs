@@ -31,10 +31,8 @@
 
         <% if (isLoggedIn && userIsVolunteering) { %>
             <p><strong>You are volunteering for this project.</strong></p>
-        <% } else if (isLoggedIn && !userIsVolunteering) { %>
-            
         <% } %>
-
+    
         <div class="action-buttons">
             <% if (user && user.role_name==='admin' ) { %>
             <a href="/project/<%= project.project_id %>/edit" class="btn">Edit Project</a>
