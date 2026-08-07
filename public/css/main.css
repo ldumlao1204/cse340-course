@@ -165,6 +165,12 @@ a {
     color: white;
 }
 
+button.btn {
+    font: inherit;
+    border: none;
+    cursor: pointer;
+}
+
 .btn:hover,
 .btn:focus-visible {
     background: var(--accent-boost);
@@ -254,17 +260,20 @@ footer {
     /* Remove default bullet points */
     padding: 0;
     margin-top: 1.5rem;
-    
 }
 
 .item-list li {
     margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     /* Add some space between category items */
 }
 
 .item-list a {
     display: block;
     /* Make the entire area clickable, not just the text */
+    flex: 1;
     padding: 1rem;
     background-color: var(--primary);
     border: 1px solid var(--border);
@@ -282,6 +291,10 @@ footer {
     transform: translateY(-2px);
     /* Lift the item slightly */
     box-shadow: var(--shadow);
+}
+
+.item-list form {
+    margin-top: 0;
 }
 
 /* Flash message styles */
@@ -372,7 +385,6 @@ form {
     border-radius: 8px;
     padding: 1rem;
     box-shadow: 0 0 0 2px rgba(5, 102, 141, 0.2);
-
 }
 
 .checkbox-item {
@@ -388,5 +400,10 @@ form {
 .action-buttons {
     margin-top: 1.5rem;
     display: flex;
+    align-items: center;
     gap: 1rem;
+}
+
+.action-buttons form {
+    margin-top: 0;
 }
